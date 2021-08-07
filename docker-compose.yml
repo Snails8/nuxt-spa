@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    container_name: hr-admin
+    build:
+      context: ./.docker/web
+      dockerfile: Dockerfile
+    environment:
+      PORT: '3000'
+      HOST: '0.0.0.0'
+      IS_BASIC_AUTH: 'false'
+      BASE_URL: 'http://nginx'
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+      - api
+
+networks:
+  api:
+    external: true
