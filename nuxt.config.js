@@ -4,9 +4,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'blog',
+    title: 'nuxt-spa',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -21,6 +21,9 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+      // 追記
+    '~/node_modules/bootstrap-vue/dist/bootstrap-vue.css',
+    { src: '~/assets/scss/app.scss', lang: 'scss'}
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -38,9 +41,53 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/auth',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
+
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt'
   ],
+
+  env: {
+    S3_URL: process.env.S3_URL,
+  },
+
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/api/': {
+      target: process.env.BASE_URL,
+    }
+  },
+
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: false,
+      home: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          // API :RouteServiceProver のprefix=> route参照
+          login: { url: '/api/admin/auth/login', method: 'post', propertyName: false },
+          user: { url: '/api/admin/user', method: 'get', propertyName: false },
+          logout: false
+        },
+        tokenRequired: false,
+        tokenType: false,
+      }
+    },
+    localStorage: false,
+  },
+
+  router: {
+    middleware: ['auth']
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
