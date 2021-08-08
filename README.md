@@ -1,6 +1,10 @@
 # nuxt-spa
 ## set up
 ```
+$ touch .env
+$ echo 'APP_KEY=' > .env
+```
+```
 $ docker-compose build
 $ docker-compose up
 $ docker-compose exec front-app /bin/ash
