@@ -1,4 +1,14 @@
 # nuxt-spa
+## set up
+```
+$ docker-compose build
+$ docker-compose up
+$ docker-compose exec front-app /bin/ash
+
+#app 
+$ yarn install
+$ yarn dev 
+```
 
 ## Build Setup
 
