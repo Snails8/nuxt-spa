@@ -1,12 +1,14 @@
 <template>
-<!--  <div class="animated fadeIn">-->
+  <div class="container">
     <b-card class="mt-3 mx-3 d-flex align-items-center justify-content-center">
       <b-alert variant="danger" :show="isFailure" dismissible @dismissed="isFailure=false">
         {{ errorMessage }}
       </b-alert>
+
       <b-card-body>
         <b-form name="login" @submit.prevent="login()">
           <h1 class="h3 text-center mb-3">Login</h1>
+
           <b-form-group>
             <b-input-group>
               <b-input-group-prepend>
@@ -23,14 +25,16 @@
               <b-form-input type="password" placeholder="Password" v-model="form.password"></b-form-input>
             </b-input-group>
           </b-form-group>
-          <div class="text-center col-12">
+
+          <div class="text-center">
             <b-button class="px-4" type="submit" variant="primary">Login</b-button>
           </div>
         </b-form>
       </b-card-body>
     </b-card>
-<!--  </div>-->
+  </div>
 </template>
+
 <script>
 export default {
   name: 'login',
