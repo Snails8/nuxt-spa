@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
-    <b-card class="mt-3 mx-3 d-flex align-items-center justify-content-center">
-      <b-alert variant="danger" :show="isFailure" dismissible @dismissed="isFailure=false">
-        {{ errorMessage }}
-      </b-alert>
+  <b-container class="animated fadeIn mt-3">
+    <b-alert variant="danger" :show="isFailure" dismissible @dismissed="isFailure=false">
+      {{ errorMessage }}
+    </b-alert>
 
+    <b-card class="mt-3 mx-3 d-flex align-items-center justify-content-center">
       <b-card-body>
         <b-form name="login" @submit.prevent="login()">
           <h1 class="h3 text-center mb-3">Login</h1>
@@ -32,7 +32,7 @@
         </b-form>
       </b-card-body>
     </b-card>
-  </div>
+  </b-container>
 </template>
 
 <script>
